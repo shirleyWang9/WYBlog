@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WYBlog</title>
+</head>
+<body>
+    {% for blog in blogs %}
+        <h2>{{ blog.title }}</h2>
+        <p>{{ blog.body | slice:":80"}}</p>
+        <p>{{ blog.posted }} - By {{ blog.author }}</p>
+    {% endfor %}
+
+</body>
+</html>
