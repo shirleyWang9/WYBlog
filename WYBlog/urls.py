@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url
 
-from blog.views import blog_list, blog_detail
+from blog.views import blog_detail,blog_list
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'^blog/$', blog_list),
+    url(r'^$',blog_list),
     url(r'^blog/(?P<slug>[^\.]+).html', blog_detail, name='blog_view'),
 ]
