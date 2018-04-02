@@ -10,7 +10,7 @@
                 <div class="col-sm-14 text-left">
                         <div class="">
                             <h2>{{ blog.title }}</h2>
-                            <p>{{ blog.body }}</p>
+                            <p>{{ blog.body | safe }}</p>
                             <p>{{ blog.posted }} - By {{ blog.author }}</p>
                         </div>
                 </div>

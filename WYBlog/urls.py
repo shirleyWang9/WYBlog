@@ -15,11 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
+
+from rest_framework import routers
+from blog.api import BlogSet
+from django.urls import include
 
 from blog.views import blog_detail,blog_list
+
+apiRouter = routers.DefaultRouter()
+apiRouter.register(r'blog', BlogSet)
+
 
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^$',blog_list),
     url(r'^blog/(?P<slug>[^\.]+).html', blog_detail, name='blog_view'),
+    url(r'^api/',include(apiRouter.urls)),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
