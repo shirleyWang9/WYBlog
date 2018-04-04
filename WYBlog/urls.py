@@ -21,8 +21,7 @@ from django.conf.urls.static import static
 from rest_framework import routers
 from blog.api import BlogSet
 from django.urls import include
-
-from blog.views import blog_detail,blog_list
+from blog.views import blog_list
 
 apiRouter = routers.DefaultRouter()
 apiRouter.register(r'blog', BlogSet)
@@ -30,8 +29,8 @@ apiRouter.register(r'blog', BlogSet)
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'^$',blog_list),
-    url(r'^blog/(?P<slug>[^\.]+).html', blog_detail, name='blog_view'),
+    url('^$', blog_list, name='home'),
+    url(r'^blog/', include('blog.urls')),
     url(r'^api/',include(apiRouter.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
